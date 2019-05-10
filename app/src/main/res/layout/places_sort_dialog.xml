@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/ratingRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_margin="4dp"
+            android:layoutDirection="rtl"
+            android:text="Рейтинг"
+            android:textAlignment="textStart"
+            android:textSize="16dp" />
+
+        <com.github.chuross.library.ExpandableLayout
+            android:id="@+id/expandable_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:exl_expanded="true">
+            <!-- any child views -->
+
+            <RadioGroup
+                android:id="@+id/radioGroupRate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/ratingRadioButtonAll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_margin="4dp"
+                    android:layoutDirection="rtl"
+                    android:text="Общий"
+                    android:textAlignment="textStart"
+                    android:textSize="16dp" />
+
+                <RadioButton
+                    android:id="@+id/ratingRadioButtonService"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_margin="4dp"
+                    android:layoutDirection="rtl"
+                    android:text="Обслуживание"
+                    android:textAlignment="textStart"
+                    android:textSize="16dp" />
+
+                <RadioButton
+                    android:id="@+id/ratingRadioButtonPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_margin="4dp"
+                    android:layoutDirection="rtl"
+                    android:text="Цена"
+                    android:textAlignment="textStart"
+                    android:textSize="16dp" />
+
+                <RadioButton
+                    android:id="@+id/ratingRadioButtonServiceQuality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_margin="4dp"
+                    android:layoutDirection="rtl"
+                    android:text="Качество услуг"
+                    android:textAlignment="textStart"
+                    android:textSize="16dp" />
+
+                <RadioButton
+                    android:id="@+id/ratingRadioButtonInterior"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_margin="4dp"
+                    android:layoutDirection="rtl"
+                    android:text="Интерьер"
+                    android:textAlignment="textStart"
+                    android:textSize="16dp" />
+            </RadioGroup>
+
+        </com.github.chuross.library.ExpandableLayout>
+
+        <RadioButton
+            android:id="@+id/onlineCountRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_margin="4dp"
+            android:layoutDirection="rtl"
+            android:text="Новые"
+            android:textAlignment="textStart"
+            android:textSize="16dp" />
+
+        <RadioButton
+            android:id="@+id/checkinCountRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_margin="4dp"
+            android:layoutDirection="rtl"
+            android:text="Популярные"
+            android:textAlignment="textStart"
+            android:textSize="16dp" />
+    </RadioGroup>
+
+
+</android.support.constraint.ConstraintLayout>

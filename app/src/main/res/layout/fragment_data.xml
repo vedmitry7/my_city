@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
+
+
+    <android.support.design.widget.TextInputLayout
+
+        android:id="@+id/containerDataFragFirstNameEt"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        app:errorEnabled="true"
+        app:hintTextAppearance="@style/TextInputLayoutHintText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <EditText
+            android:id="@+id/dataFragFirstNameEt"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:background="@android:color/white"
+            android:hint="Имя"
+            android:paddingLeft="@dimen/padding16"
+            android:paddingRight="@dimen/padding16"
+            android:textColor="@color/reg_dialog_text_color" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/deliver_color"
+        app:layout_constraintTop_toBottomOf="@+id/containerDataFragFirstNameEt" />
+
+
+    <android.support.design.widget.TextInputLayout
+
+        android:id="@+id/containerDataFragSecondNameEt"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:errorEnabled="true"
+        app:hintTextAppearance="@style/TextInputLayoutHintText"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        tools:ignore="MissingConstraints">
+
+        <EditText
+            android:id="@+id/dataFragSecondNameEt"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:background="@android:color/white"
+            android:hint="Фамилия"
+            android:paddingLeft="@dimen/padding16"
+            android:paddingRight="@dimen/padding16"
+            android:textColor="@color/reg_dialog_text_color" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/deliver_color"
+        app:layout_constraintTop_toBottomOf="@+id/containerDataFragSecondNameEt" />
+
+    <!-- <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/reg_item_height"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
+
+        <Spinner
+            android:id="@+id/spinnerNumberDay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <Spinner
+            android:id="@+id/spinnerNumberMonth"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"/>
+
+        <Spinner
+            android:id="@+id/spinnerNumberYear"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"/>
+
+    </LinearLayout>-->
+
+
+    <TextView
+
+        android:id="@+id/dataFragBirthdayTv"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/padding16"
+        android:text="Дата рождения"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/dataFragBirthdayIb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/deliver_color"
+        app:layout_constraintTop_toBottomOf="@+id/dataFragBirthdayTv" />
+
+    <RadioGroup
+        android:id="@+id/dataFragSexRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/padding16"
+        android:paddingRight="@dimen/padding16"
+        app:layout_constraintTop_toBottomOf="@+id/view3"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
+
+        <RadioButton
+            android:id="@+id/male"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="Мужчина"
+            android:textSize="17sp" />
+
+        <RadioButton
+            android:id="@+id/female"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Женщина"
+            android:textSize="17sp" />
+
+    </RadioGroup>
+
+    <ImageView
+        android:id="@+id/dataFragBirthdayIb"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:srcCompat="@drawable/ic_choose_date" />
+
+    <Button
+        android:id="@+id/dataFragmentNext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:text="Далее"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/deliver_color"
+        app:layout_constraintTop_toBottomOf="@+id/dataFragSexRadioGroup" />
+
+
+    <android.support.design.widget.TextInputLayout
+        app:layout_constraintTop_toBottomOf="@+id/dataFragSexRadioGroup"
+
+        android:id="@+id/containerCityEditText"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        app:errorEnabled="true"
+        app:hintTextAppearance="@style/TextInputLayoutHintText"
+        app:layout_constraintBottom_toTopOf="@+id/dataFragmentNext"
+        tools:ignore="MissingConstraints">
+
+        <AutoCompleteTextView
+            android:id="@+id/cityEditText"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:background="@android:color/white"
+            android:hint="Город"
+            android:text=""
+            android:textSize="16sp" />
+    </android.support.design.widget.TextInputLayout>
+
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/complain"
+        android:orderInCategory="100"
+        android:title="Пожаловаться"
+        />
+    <item
+        android:title="Заблокировать"
+        android:id="@+id/ban"
+        android:orderInCategory="101"/>
+    <item
+        android:title="Запретить отслеживать меня"
+        android:id="@+id/ban_track"
+        android:orderInCategory="101"/>
+</menu>
