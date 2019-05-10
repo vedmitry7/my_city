@@ -42,7 +42,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import fr.arnaudguyon.tabstacker.TabStacker;
 
-public class FeedCheckinFragmentNew extends android.support.v4.app.Fragment implements TabStacker.TabStackInterface, SwipeRefreshLayout.OnRefreshListener {
+public class FeedCheckinFragment extends android.support.v4.app.Fragment implements TabStacker.TabStackInterface, SwipeRefreshLayout.OnRefreshListener {
 
 
     @BindView(R.id.feedFragmentRecyclerView)
@@ -82,8 +82,8 @@ public class FeedCheckinFragmentNew extends android.support.v4.app.Fragment impl
         return view;
     }
 
-    public static FeedCheckinFragmentNew createInstance(String name, String filter) {
-        FeedCheckinFragmentNew fragment = new FeedCheckinFragmentNew();
+    public static FeedCheckinFragment createInstance(String name, String filter) {
+        FeedCheckinFragment fragment = new FeedCheckinFragment();
         Bundle bundle = new Bundle();
         bundle.putString("name", name);
         bundle.putString("filter", filter);

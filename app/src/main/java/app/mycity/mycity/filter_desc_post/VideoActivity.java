@@ -60,7 +60,6 @@ public class VideoActivity extends AppCompatActivity {
         System.loadLibrary("NativeImageProcessor");
     }
 
-    private String saveImagePath;
     private ProgressDialog progressDialog;
 
     @Override

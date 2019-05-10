@@ -70,39 +70,6 @@
         android:background="@color/deliver_color"
         app:layout_constraintTop_toBottomOf="@+id/containerDataFragSecondNameEt" />
 
-    <!-- <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/reg_item_height"
-        android:background="@android:color/white"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/view2"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
-
-        <Spinner
-            android:id="@+id/spinnerNumberDay"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-
-        <Spinner
-            android:id="@+id/spinnerNumberMonth"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"/>
-
-        <Spinner
-            android:id="@+id/spinnerNumberYear"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"/>
-
-    </LinearLayout>-->
-
-
     <TextView
 
         android:id="@+id/dataFragBirthdayTv"

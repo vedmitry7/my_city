@@ -68,7 +68,6 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:text="12:48"
                 android:textColor="@color/white_50percent"
                 android:textSize="12dp"
                 app:layout_constraintBottom_toBottomOf="@+id/attImage"

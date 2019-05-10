@@ -69,8 +69,6 @@
     </android.support.constraint.ConstraintLayout>
 
 
-
-
     <android.support.v4.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"

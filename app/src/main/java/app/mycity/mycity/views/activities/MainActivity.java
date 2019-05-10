@@ -92,8 +92,8 @@ import app.mycity.mycity.views.fragments.events.ServiceContentFragment;
 import app.mycity.mycity.views.fragments.events.ServicesFragment;
 import app.mycity.mycity.views.fragments.feed.ChronicsFragment;
 import app.mycity.mycity.views.fragments.feed.FeedFragment;
-import app.mycity.mycity.views.fragments.feed.FeedPhotoReportFragmentContentNew;
-import app.mycity.mycity.views.fragments.feed.FeedPlacesCheckinFragmentNew2;
+import app.mycity.mycity.views.fragments.feed.FeedPhotoReportFragmentContent;
+import app.mycity.mycity.views.fragments.feed.FeedPlacesCheckinFragment;
 import app.mycity.mycity.views.fragments.feed.PhotoReportFragment;
 import app.mycity.mycity.views.fragments.places.PlaceFragment;
 import app.mycity.mycity.views.fragments.places.PlaceSubscribersFragment;
@@ -111,7 +111,7 @@ import app.mycity.mycity.views.fragments.settings.NotificationSettingsFragment;
 import app.mycity.mycity.views.fragments.settings.ProfileSettingsFragment;
 import app.mycity.mycity.views.fragments.subscribers.SubscribersFragment;
 import app.mycity.mycity.views.fragments.subscribers.SubscriptionFragment;
-import app.mycity.mycity.views.fragments.people.SuperPeoplesFragment;
+import app.mycity.mycity.views.fragments.people.PeoplesFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -135,8 +135,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
 
     @Override
     protected void onNewIntent(Intent intent) {
-        Log.i("TAG25", "new Intent - ");
-        Log.i("TAG25", "new Intent - " + intent.getAction());
         super.onNewIntent(intent);
     }
 
@@ -144,8 +142,7 @@ public class MainActivity extends AppCompatActivity implements Storage {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_main_activity_3);
-        Log.i("TAG23", "start activity ");
+        setContentView(R.layout.main_activity);
 
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
@@ -160,16 +157,12 @@ public class MainActivity extends AppCompatActivity implements Storage {
                     @Override
                     public void onComplete(@NonNull Task<InstanceIdResult> task) {
                         if (!task.isSuccessful()) {
-                            Log.d("TAG26", "getInstanceId failed", task.getException());
-                            Log.d("TAG26", "getInstanceId failed", task.getException().getCause());
                             return;
                         }
                         String token = task.getResult().getToken();
                         registrationDevice(token);
-                        Log.d("TAG26", token);
                     }
                 });
-//        window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorAccent));
 
         FirebaseMessaging.getInstance().subscribeToTopic("profile" + SharedManager.getProperty(Constants.KEY_MY_ID));
         FirebaseMessaging.getInstance().subscribeToTopic("news");
@@ -233,15 +226,12 @@ public class MainActivity extends AppCompatActivity implements Storage {
             Uri data = this.getIntent().getData();
             if (data != null && data.isHierarchical()) {
                 String uri = this.getIntent().getDataString();
-                Log.i("TAG23", "Deep link clicked : " + uri);
                 String type = "";
                 String objectId;
                 String ownerId;
 
                 int pos = uri.lastIndexOf('/')+1;
-                Log.i("TAG23", "pos : " + pos);
                 String res = uri.substring(pos, uri.length());
-                Log.i("TAG23", "res : " + res);
 
                 if(res.startsWith(Constants.KEY_POST)){
                     type = Constants.KEY_POST;
@@ -260,7 +250,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
                 }
                 ownerId = res.substring(type.length(), res.lastIndexOf("_"));
                 objectId = res.substring(res.lastIndexOf("_")+1, res.length());
-                Log.i("TAG23", "res : " + objectId + " " + ownerId);
 
                 switch (type){
                     case Constants.KEY_EVENT:
@@ -313,7 +302,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.i("TAG23", "request code " + requestCode + " result - " + resultCode );
 
         if(requestCode == 74){
             if(resultCode == RESULT_OK){
@@ -393,9 +381,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
                 if(response.body()!=null){
                     SharedManager.addProperty("ts", response.body().getResponse().getTs());
                     SharedManager.addProperty("socketServer", response.body().getResponse().getServer());
-                    Log.d("TAG21", "update TS - " + response.body().getResponse().getTs());
-                    Log.d("TAG21", "Socket Server - " + response.body().getResponse().getServer());
-                    Toast.makeText(MainActivity.this, response.body().getResponse().getTs(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -427,9 +412,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Log.d("TAG23", "get -- ");
-                Log.d("TAG23", "lat" +  SharedManager.getProperty("latitude"));
-                Log.d("TAG23", "long" +  SharedManager.getProperty("longitude"));
 
                 String lat = SharedManager.getProperty("latitude");
                 String lon = SharedManager.getProperty("longitude");
@@ -442,9 +424,8 @@ public class MainActivity extends AppCompatActivity implements Storage {
                 ApiFactory.getApi().getPlaceByCoordinates(SharedManager.getProperty(Constants.KEY_ACCESS_TOKEN), lat, lon, 300, 0).enqueue(new Callback<ResponseContainer<ResponsePlaces>>() {
                     @Override
                     public void onResponse(Call<ResponseContainer<ResponsePlaces>> call, Response<ResponseContainer<ResponsePlaces>> response) {
-                        Log.d("TAG23", "response");
                         if(response.body()!=null && response.body().getResponse().getItems()!=null){
-                            Log.d("TAG23", "response ok");
+
                             progress.setVisibility(View.GONE);
                             if(response.body().getResponse().getCount()==0){
                                 message.setVisibility(View.VISIBLE);
@@ -452,14 +433,12 @@ public class MainActivity extends AppCompatActivity implements Storage {
                                 recyclerView.setVisibility(View.VISIBLE);
                             }
                             placeList.addAll(response.body().getResponse().getItems());
-                            Log.d("TAG23", "Places size" + response.body().getResponse().getItems().size());
                             adapter.update(placeList);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseContainer<ResponsePlaces>> call, Throwable t) {
-                        Log.d("TAG23", "response fail " + t.getLocalizedMessage());
                     }
                 });
             }
@@ -567,7 +546,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
                                                 return;
                                             }
                                             if(response.body().getResponse().getSuccess()==1){
-                                                Log.d("TAG23", "Place created");
                                                 SharedManager.addProperty("currentPlace", response.body().getResponse().getId());
                                                 if(video){
                                                     Intent intent = new Intent(MainActivity.this, VideoActivity.class);
@@ -585,7 +563,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
                                     public void onFailure(Call<ResponseContainer<SuccessCreatePlace>> call, Throwable t) {
                                     }
                                 });
-                                // c.dismiss();
                             }
                         });
                     }
@@ -760,7 +737,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void startPlaceSubscribers(EventBusMessages.OpenPlaceSubscribers event) {
-        Log.d("TAG21", "start Place Sub...s " );
         PlaceSubscribersFragment myFriendsFragment = PlaceSubscribersFragment.createInstance(
                 getFragmentName(),
                 event.getGroupId());
@@ -769,7 +745,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void startUsersInPlace(EventBusMessages.OpenUsersInPlace event) {
-        Log.d("TAG21", "start Place Sub...s " );
         UsersInPlaceFragment myFriendsFragment = UsersInPlaceFragment.createInstance(
                 getFragmentName(),
                 event.getGroupId());
@@ -786,7 +761,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
 
     String getFragmentName(){
         String s = "TAB_" + mTabStacker.getCurrentTabSize();
-        Log.d("TAG23", "tab - " + s);
         return s;
     }
 
@@ -794,7 +768,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
     public void openUser(EventBusMessages.OpenUser event){
 
         if(event.isCloseCurrent()){
-            Log.d("TAG26", "close current");
             mTabStacker.onBackPressed();
         }
 
@@ -802,12 +775,10 @@ public class MainActivity extends AppCompatActivity implements Storage {
         if(event.getMessage().equals(SharedManager.getProperty(Constants.KEY_MY_ID))){
             profileFragment = ProfileFragment.createInstance(
                     getFragmentName());
-            Log.d("TAG21", "Start my profile");
         } else {
             profileFragment = SomeoneProfileFragment.createInstance(
                     getFragmentName(),
                     event.getMessage());
-            Log.d("TAG21", "Start someone");
         }
         mTabStacker.replaceFragment(profileFragment, null);
     }
@@ -835,9 +806,7 @@ public class MainActivity extends AppCompatActivity implements Storage {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void openPlace(EventBusMessages.OpenPlace event){
-        Log.d("TAG26", "open place");
         if(event.isCloseCurrent()){
-            Log.d("TAG26", "close current");
             mTabStacker.onBackPressed();
         }
 
@@ -850,7 +819,7 @@ public class MainActivity extends AppCompatActivity implements Storage {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void openPlacePhoto(EventBusMessages.OpenPlacePhoto event){
-        FeedPlacesCheckinFragmentNew2 placeFragment = FeedPlacesCheckinFragmentNew2.createInstance(
+        FeedPlacesCheckinFragment placeFragment = FeedPlacesCheckinFragment.createInstance(
                 getFragmentName(),
                 event.getPlaceId(),
                 event.getPostId());
@@ -863,7 +832,7 @@ public class MainActivity extends AppCompatActivity implements Storage {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void openPhotoReportContent(EventBusMessages.OpenPhotoReportContent event){
-        FeedPhotoReportFragmentContentNew placeFragment = FeedPhotoReportFragmentContentNew.createInstance(
+        FeedPhotoReportFragmentContent placeFragment = FeedPhotoReportFragmentContent.createInstance(
                 getFragmentName(),
                 event.getPhotoId());
         mTabStacker.replaceFragment(placeFragment, null);
@@ -903,9 +872,8 @@ public class MainActivity extends AppCompatActivity implements Storage {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void openPeople(EventBusMessages.OpenPeople event){
-        Log.d("TAG21", "... open people");
         mTabStacker.replaceFragment(
-                SuperPeoplesFragment.createInstance(getFragmentName(), mTabStacker.getCurrentTabSize(), 2), null);
+                PeoplesFragment.createInstance(getFragmentName(), mTabStacker.getCurrentTabSize(), 2), null);
     }
 
     /**
@@ -914,7 +882,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void openProfileContent(EventBusMessages.OpenCheckinProfileContent event){
         mTabStacker.replaceFragment(ProfileCheckinContent.createInstance(getFragmentName(), event.getPostId(), event.getStorageKey()), null);
-        Log.d("TAG21", "... open profile content");
     }
 
     /**
@@ -922,10 +889,8 @@ public class MainActivity extends AppCompatActivity implements Storage {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void openEventContent(EventBusMessages.OpenEventContent event){
-        Log.d("TAG26", "");
         mTabStacker.replaceFragment(
                 EventContentFragment.createInstance(getFragmentName(), event.getEventId(), event.getOwnerId(), event.isBackToPlace()), null);
-        Log.d("TAG21", "... open profile content " + event.getOwnerId());
     }
 
     /**
@@ -936,7 +901,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
     public void openActionContent(EventBusMessages.OpenActionContent event){
         mTabStacker.replaceFragment(
                 ActionContentFragment.createInstance(getFragmentName(), event.getEventId(), event.getOwnerId(), event.isBackToPlace()), null);
-        Log.d("TAG21", "... open profile content " + event.getOwnerId());
     }
 
     /**
@@ -945,7 +909,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void openServiceContent(EventBusMessages.OpenServiceContent event){
         mTabStacker.replaceFragment(ServiceContentFragment.createInstance(getFragmentName(), event.getEventId(), event.getOwnerId(), event.isBackToPlace()), null);
-        Log.d("TAG21", "... open profile content " + event.getOwnerId());
     }
 
     /**
@@ -953,7 +916,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void openDialogs(EventBusMessages.OpenDialogs event){
-        Log.d("TAG21", "... open chat");
         if(!(mTabStacker.getCurrentTopFragment() instanceof DialogsFragment)){
             mTabStacker.replaceFragment(
                     DialogsFragment.createInstance(getFragmentName()), null);
@@ -965,7 +927,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void openChat(EventBusMessages.OpenChat event){
-        Log.d("TAG21", "... open chat");
         mTabStacker.replaceFragment(
                 ChatFragment.createInstance(getFragmentName(), event.getPeerId()), null);
     }
@@ -975,9 +936,7 @@ public class MainActivity extends AppCompatActivity implements Storage {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void openNotifications(EventBusMessages.OpenNotifications event) {
-        Log.d("TAG21", "... open notif");
         if(!(mTabStacker.getCurrentTopFragment() instanceof NotificationsFragment)){
-            Log.d("TAG21", "not inst create");
             mTabStacker.replaceFragment(NotificationsFragment.createInstance(
                     getFragmentName()), null);
         }
@@ -1072,7 +1031,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void loseConnection(EventBusMessages.LoseConnection event){
-        Log.d("TAG24", "exc. - catched" );
         mTabStacker.replaceFragment(
                 LoseConnectionFragment.createInstance(getFragmentName()), null);
     }
@@ -1082,7 +1040,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void map(EventBusMessages.OpenMap event){
-        Log.d("TAG24", "exc. - catched" );
         mTabStacker.replaceFragment(
                 new MapFragment(), null);
     }
@@ -1119,7 +1076,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
         return false;
     }
 
-
     void recreateFragment(){
         getSupportFragmentManager()
                 .beginTransaction()
@@ -1142,9 +1098,7 @@ public class MainActivity extends AppCompatActivity implements Storage {
 
     @Override
     public Object getDate(String key) {
-        Log.i("TAG23", "GET DATE " + key );
         if(date.containsKey(key)){
-            Log.i("TabFragment", "contains");
             return date.get(key);
         }
         return null;
@@ -1152,26 +1106,20 @@ public class MainActivity extends AppCompatActivity implements Storage {
 
     @Override
     public void setDate(String key, Object date) {
-        Log.i("TAG23", "SAVE " + key);
         remove(key);
         this.date.put(key, date);
     }
 
     @Override
     public void remove(String key) {
-        Log.i("TAG23", "REMOVE " + key);
         date.remove(key);
     }
 
 
     @Override
     public void onBackPressed() {
-        Log.i("TAG26", "onBackPressed");
-        Log.i("TAG21", "name " + mTabStacker.getCurrentTabName());
-
         android.support.v4.app.Fragment fragment = mTabStacker.getCurrentTopFragment();
         if (fragment != null && fragment instanceof EventContentFragment) {
-            Log.i("TAG26", "EventContentFragment back 2");
             if (fragment.getArguments().getBoolean("backToPlace")) {
                 ((EventContentFragment) fragment).back(null);
             } else {
@@ -1183,7 +1131,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
         }
 
         if (fragment != null && fragment instanceof ActionContentFragment) {
-            Log.i("TAG26", "ActionContentFragment back 2");
             if (fragment.getArguments().getBoolean("backToPlace")) {
                 ((ActionContentFragment) fragment).back(null);
             } else {
@@ -1195,7 +1142,6 @@ public class MainActivity extends AppCompatActivity implements Storage {
         }
 
         if (fragment != null && fragment instanceof ProfileCheckinContentOne) {
-            Log.i("TAG26", "ProfileCheckinContentOne back 2");
             if (fragment.getArguments().getBoolean("backToProfile")) {
                 ((ProfileCheckinContentOne) fragment).back(null);
             } else {

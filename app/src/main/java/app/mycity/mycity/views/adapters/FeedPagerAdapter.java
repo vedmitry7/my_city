@@ -4,14 +4,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import app.mycity.mycity.views.fragments.feed.FeedCheckinFragmentNew;
+import app.mycity.mycity.views.fragments.feed.FeedCheckinFragment;
 
 public class FeedPagerAdapter extends FragmentPagerAdapter {
 
     String tabName;
 
-    FeedCheckinFragmentNew allCheckinFragment;
-    FeedCheckinFragmentNew subscriptionsCheckinFragment;
+    FeedCheckinFragment allCheckinFragment;
+    FeedCheckinFragment subscriptionsCheckinFragment;
 
     public FeedPagerAdapter(FragmentManager fm, String tabName) {
         super(fm);
@@ -22,10 +22,10 @@ public class FeedPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                allCheckinFragment = FeedCheckinFragmentNew.createInstance(tabName, "all");
+                allCheckinFragment = FeedCheckinFragment.createInstance(tabName, "all");
                 return allCheckinFragment;
             case 1:
-                subscriptionsCheckinFragment = FeedCheckinFragmentNew.createInstance(tabName, "subscriptions");
+                subscriptionsCheckinFragment = FeedCheckinFragment.createInstance(tabName, "subscriptions");
                 return subscriptionsCheckinFragment;
         }
         return null;
@@ -47,11 +47,11 @@ public class FeedPagerAdapter extends FragmentPagerAdapter {
         return null;
     }
 
-    public FeedCheckinFragmentNew getAllCheckinFragment() {
+    public FeedCheckinFragment getAllCheckinFragment() {
         return allCheckinFragment;
     }
 
-    public FeedCheckinFragmentNew getSubscriptionsCheckinFragment() {
+    public FeedCheckinFragment getSubscriptionsCheckinFragment() {
         return subscriptionsCheckinFragment;
     }
 }

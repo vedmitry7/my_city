@@ -21,7 +21,8 @@
         android:layout_height="48dp"
         android:src="@drawable/shadow_checkin_content"
         android:visibility="gone"
-        tools:layout_editor_absoluteY="467dp" />
+        tools:layout_editor_absoluteY="467dp"
+        tools:ignore="MissingConstraints" />
 
 
     <android.support.constraint.ConstraintLayout

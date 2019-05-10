@@ -17,8 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -26,7 +24,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -55,7 +52,7 @@ import butterknife.OnClick;
 import fr.arnaudguyon.tabstacker.TabStacker;
 import fr.arnaudguyon.tabstacker.TabStacker.TabStackInterface;
 
-public class SuperPeoplesFragment extends Fragment implements TabStackInterface {
+public class PeoplesFragment extends Fragment implements TabStackInterface {
 
 
     @BindView(R.id.myAllFriendsRecyclerAdapter)
@@ -94,7 +91,7 @@ public class SuperPeoplesFragment extends Fragment implements TabStackInterface 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.super_people_fragment, container, false);
+        View view = inflater.inflate(R.layout.people_fragment, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -108,8 +105,8 @@ public class SuperPeoplesFragment extends Fragment implements TabStackInterface 
     }
 
 
-    public static SuperPeoplesFragment createInstance(String name, int stackPos, int tabPos) {
-        SuperPeoplesFragment fragment = new SuperPeoplesFragment();
+    public static PeoplesFragment createInstance(String name, int stackPos, int tabPos) {
+        PeoplesFragment fragment = new PeoplesFragment();
         Bundle bundle = new Bundle();
         bundle.putString("name", name);
         bundle.putInt("tabPos", tabPos);

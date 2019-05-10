@@ -50,7 +50,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FeedPhotoReportFragmentContentNew extends android.support.v4.app.Fragment implements TabStacker.TabStackInterface {
+public class FeedPhotoReportFragmentContent extends android.support.v4.app.Fragment implements TabStacker.TabStackInterface {
 
     LinearLayoutManager mLayoutManager;
 
@@ -92,8 +92,8 @@ public class FeedPhotoReportFragmentContentNew extends android.support.v4.app.Fr
     private boolean mayRestore;
     boolean clearScreen;
 
-    public static FeedPhotoReportFragmentContentNew createInstance(String name, String photoId) {
-        FeedPhotoReportFragmentContentNew fragment = new FeedPhotoReportFragmentContentNew();
+    public static FeedPhotoReportFragmentContent createInstance(String name, String photoId) {
+        FeedPhotoReportFragmentContent fragment = new FeedPhotoReportFragmentContent();
         Bundle bundle = new Bundle();
         bundle.putString("name", name);
         bundle.putString("photoId", photoId);
@@ -109,7 +109,7 @@ public class FeedPhotoReportFragmentContentNew extends android.support.v4.app.Fr
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.feed_photo_report_content_new, container, false);
+        View view = inflater.inflate(R.layout.feed_photo_report_content, container, false);
         placeId = getArguments().getString("placeId");
         ButterKnife.bind(this, view);
         return view;

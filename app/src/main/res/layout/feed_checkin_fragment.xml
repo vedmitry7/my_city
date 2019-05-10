@@ -34,9 +34,9 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:paddingTop="100dp"
                 android:text="Нет чекинов для показа"
                 android:textSize="16sp" />

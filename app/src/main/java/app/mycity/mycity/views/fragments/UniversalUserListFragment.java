@@ -61,7 +61,7 @@ public class UniversalUserListFragment extends Fragment implements SwipeRefreshL
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_my_all_friends, container, false);
+        View view = inflater.inflate(R.layout.fragment_all_friends, container, false);
 
         if(getArguments() != null){
             id = getArguments().getString("ID");

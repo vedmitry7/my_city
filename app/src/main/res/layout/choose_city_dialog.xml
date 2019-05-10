@@ -18,7 +18,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
-
         <AutoCompleteTextView
             android:id="@+id/searchEditText"
             android:layout_width="match_parent"
@@ -52,6 +51,5 @@
         android:text="Искать по всем городам"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
-
 
 </android.support.constraint.ConstraintLayout>

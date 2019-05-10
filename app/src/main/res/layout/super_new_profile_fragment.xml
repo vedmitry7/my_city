@@ -77,7 +77,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/fab_margin"
                 android:background="@color/colorAccent"
-                app:layout_anchor="@id/app_bar"
                 app:layout_constraintBottom_toBottomOf="@+id/profileFragRoundImage"
                 app:layout_constraintEnd_toEndOf="@+id/profileFragRoundImage"
                 app:layout_constraintHorizontal_bias="0.97"
@@ -100,7 +99,6 @@
                 android:layout_marginTop="108dp"
                 android:background="@color/colorAccentRed"
                 app:backgroundTint="@android:color/white"
-                app:layout_anchor="@id/app_bar"
                 app:layout_constraintBottom_toBottomOf="@+id/profileFragRoundImage"
                 app:layout_constraintEnd_toEndOf="@+id/profileFragRoundImage"
                 app:layout_constraintHorizontal_bias="0.02"
@@ -358,9 +356,6 @@
     </android.support.v4.widget.NestedScrollView>
 
 
-
-
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/profilePlaceHolder"
         android:layout_width="match_parent"
@@ -373,10 +368,10 @@
         app:layout_constraintTop_toBottomOf="@+id/profileFragConstraintLayoutToolbarContainer">
 
         <ProgressBar
-            android:indeterminateTint="@color/colorAccent"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="90dp"
+            android:indeterminateTint="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

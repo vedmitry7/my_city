@@ -15,14 +15,4 @@
 
     </android.support.v7.widget.RecyclerView>
 
-<!--    <View
-        android:id="@+id/up_shadow"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="@drawable/toolbar_up_shadow"
-        app:layout_constraintBottom_toTopOf="@+id/done"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />-->
-
 </android.support.constraint.ConstraintLayout>

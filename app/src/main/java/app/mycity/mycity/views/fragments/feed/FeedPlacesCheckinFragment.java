@@ -57,7 +57,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FeedPlacesCheckinFragmentNew2 extends android.support.v4.app.Fragment implements TabStacker.TabStackInterface {
+public class FeedPlacesCheckinFragment extends android.support.v4.app.Fragment implements TabStacker.TabStackInterface {
 
     LinearLayoutManager mLayoutManager;
 
@@ -128,8 +128,8 @@ public class FeedPlacesCheckinFragmentNew2 extends android.support.v4.app.Fragme
 
     CheckinFragmentStateSliderAdapter checkinSliderAdapter;
 
-    public static FeedPlacesCheckinFragmentNew2 createInstance(String name, String placeId, String postId) {
-        FeedPlacesCheckinFragmentNew2 fragment = new FeedPlacesCheckinFragmentNew2();
+    public static FeedPlacesCheckinFragment createInstance(String name, String placeId, String postId) {
+        FeedPlacesCheckinFragment fragment = new FeedPlacesCheckinFragment();
         Bundle bundle = new Bundle();
         bundle.putString("name", name);
         bundle.putString("placeId", placeId);
@@ -141,7 +141,7 @@ public class FeedPlacesCheckinFragmentNew2 extends android.support.v4.app.Fragme
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.feed_fragment_places_checkin_new2, container, false);
+        View view = inflater.inflate(R.layout.feed_fragment_places_checkin, container, false);
         placeId = getArguments().getString("placeId");
         ButterKnife.bind(this, view);
         return view;

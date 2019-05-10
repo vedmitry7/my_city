@@ -88,7 +88,6 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:text="45"
             android:textColor="@android:color/white"
             android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -100,7 +99,6 @@
             android:id="@+id/commentsCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="45"
             android:textColor="@android:color/white"
 
             android:textSize="16dp"

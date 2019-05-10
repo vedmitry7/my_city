@@ -48,9 +48,6 @@
 
     </android.support.constraint.ConstraintLayout>
 
-
-
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/dialogsFragRecyclerView"
         android:layout_width="0dp"

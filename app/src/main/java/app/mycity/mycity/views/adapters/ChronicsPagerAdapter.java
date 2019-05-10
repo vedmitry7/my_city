@@ -3,9 +3,7 @@ package app.mycity.mycity.views.adapters;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
 
-import app.mycity.mycity.views.fragments.feed.FeedCheckinFragmentNew;
 import app.mycity.mycity.views.fragments.feed.FeedPhotoAlbumFragment;
 
 public class ChronicsPagerAdapter extends FragmentPagerAdapter {

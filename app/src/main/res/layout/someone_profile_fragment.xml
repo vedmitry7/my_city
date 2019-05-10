@@ -126,7 +126,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:alpha="0.75"
-                android:text="Вася Колотушкин"
                 android:textColor="@android:color/black"
                 android:textSize="26dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -175,12 +174,11 @@
             </RelativeLayout>
 
             <TextView
-                android:textColor="@color/black_67percent"
                 android:id="@+id/profileAbout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Всем Привет, я в MyCity!"
+                android:textColor="@color/black_67percent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/placeContainer" />

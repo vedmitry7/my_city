@@ -33,7 +33,7 @@
         android:paddingBottom="2dp"
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
-        android:text="pdsgfdsf dsf d"
+        android:text=""
         android:textColor="@android:color/white"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/feedImage"
